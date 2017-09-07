@@ -21,4 +21,6 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("development.alberto.com.trakttvtest", appContext.packageName)
     }
+
+
 }

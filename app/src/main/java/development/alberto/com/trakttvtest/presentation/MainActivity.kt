@@ -1,10 +1,11 @@
-package development.alberto.com.trakttvtest
+package development.alberto.com.trakttvtest.presentation
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import development.alberto.com.trakttvtest.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(view, R.string.fab_message, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.fab_action, null).show()
         }
     }
 
