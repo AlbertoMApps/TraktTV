@@ -20,5 +20,5 @@ object Constants {
     const val URL_BASE_TMDB = "https://api.themoviedb.org/3/"
     const val TMDB_DETAIL="movie/{id}?api_key=?"
 
-    const val TMDB_API_KEY = "7d1a069f3c7da046e809fc6a698d3ba5\n"
+    const val TMDB_API_KEY = "7d1a069f3c7da046e809fc6a698d3ba5"
 }

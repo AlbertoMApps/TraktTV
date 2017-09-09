@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import development.alberto.com.trakttvtest.R
+import development.alberto.com.trakttvtest.data.datarepository.DataTraktTmdbRepository
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, R.string.fab_message, Snackbar.LENGTH_LONG)
                     .setAction(R.string.fab_action, null).show()
         }
+
+        //Call to check the service...
+        var dataTrakt:DataTraktTmdbRepository = DataTraktTmdbRepository()
+        dataTrakt.getDataRepositoryMerged()
+        dataTrakt.observableListImageMoviesDetailsCached()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
