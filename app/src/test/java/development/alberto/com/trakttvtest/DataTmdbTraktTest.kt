@@ -1,6 +1,6 @@
 package development.alberto.com.trakttvtest
 
-import development.alberto.com.trakttvtest.data.api.TmdbtApi
+import development.alberto.com.trakttvtest.data.api.TmdbApi
 import development.alberto.com.trakttvtest.data.api.TraktApi
 import development.alberto.com.trakttvtest.data.constants.Constants
 import development.alberto.com.trakttvtest.data.model.tmdb.Tmdb
@@ -23,7 +23,7 @@ class CloudStoreTest {
     @Mock
     lateinit var restApiTrakt:TraktApi
     @Mock
-    lateinit var restApiTmdb:TmdbtApi
+    lateinit var restApiTmdb: TmdbApi
     var retrofitService:RetrofitService = RetrofitService()
     val traktObserver: TestObserver<List<Trakt>> = TestObserver()
     val tmdbObserver: TestObserver<Tmdb> = TestObserver()
@@ -49,7 +49,7 @@ class CloudStoreTest {
     }
 
     @Test
-    fun testPerformRestServiceMerged(){
+    fun testGetDataRepositoryMerged(){
         var mergedObservable: Observable<Tmdb> = restApiTrakt.getTraktDataObservable()
                 .flatMapIterable{t->t}
                 .flatMap { tmdb-> restApiTmdb.getTMDBDataObservable(tmdb.movie!!.ids!!.tmdb!!, Constants.TMDB_API_KEY) }
@@ -61,5 +61,6 @@ class CloudStoreTest {
         tmdbObserver.assertNoTimeout()
 
     }
+
 
 }

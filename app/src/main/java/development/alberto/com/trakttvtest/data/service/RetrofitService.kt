@@ -1,6 +1,6 @@
 package development.alberto.com.trakttvtest.data.service
 
-import development.alberto.com.trakttvtest.data.api.TmdbtApi
+import development.alberto.com.trakttvtest.data.api.TmdbApi
 import development.alberto.com.trakttvtest.data.api.TraktApi
 import development.alberto.com.trakttvtest.data.constants.Constants
 import okhttp3.OkHttpClient
@@ -25,14 +25,14 @@ class RetrofitService {
 
     }
 
-    fun restApiServiceTmdb(): TmdbtApi {
+    fun restApiServiceTmdb(): TmdbApi {
         var retrofit: Retrofit? = Retrofit.Builder()
                 .baseUrl(Constants.URL_BASE_TMDB)
                 .client(OkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        return retrofit!!.create(TmdbtApi::class.java)
+        return retrofit!!.create(TmdbApi::class.java)
 
     }
 }

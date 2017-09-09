@@ -19,11 +19,11 @@ class  CacheRealm {
             realm.commitTransaction()
             realm.close()
         }
-        fun getImageMoviesDetails(): Observable<List<ImageMovieDetails>>? {
+        fun getImageMoviesDetails(): List<ImageMovieDetails>? {
             val realm = Realm.getDefaultInstance()
             var imageMoviesDetails : List<ImageMovieDetails> = ArrayList( realm.where(ImageMovieDetails::class.java).findAll())
-            println("Cache of ImageMovieDetails size: "+imageMoviesDetails.size)
-            return Observable.just(imageMoviesDetails)
+            println("Cache of ImageMovieDetails size: " + imageMoviesDetails.size)
+            return imageMoviesDetails
         }
     }
 }
