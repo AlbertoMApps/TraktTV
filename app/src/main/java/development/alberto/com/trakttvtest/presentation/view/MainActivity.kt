@@ -4,17 +4,20 @@ import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import development.alberto.com.trakttvtest.R
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
+import development.alberto.com.trakttvtest.presentation.adapter.ListMovieDetailsAdapter
 import development.alberto.com.trakttvtest.presentation.presenter.PresenterListMovieDetails
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() , View {
 
     lateinit var presenterListMovieDetails:PresenterListMovieDetails
+    lateinit var listMovieDetailsAdapter: ListMovieDetailsAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +56,13 @@ class MainActivity : AppCompatActivity() , View {
 
     override fun showMovieListInView(imageMovieDetails:List<ImageMovieDetails>) {
         //update the view
+        updateRecyclerListMovieDetails(imageMovieDetails)
+    }
 
+
+    private fun updateRecyclerListMovieDetails (imageMovieDetails:List<ImageMovieDetails>) {
+        listMovieDetailsAdapter = ListMovieDetailsAdapter(this, R.layout.images_row, imageMovieDetails)
+        imagesListView.setAdapter(listMovieDetailsAdapter)
+        imagesListView.setLayoutManager( GridLayoutManager(this, 2) )
     }
 }
