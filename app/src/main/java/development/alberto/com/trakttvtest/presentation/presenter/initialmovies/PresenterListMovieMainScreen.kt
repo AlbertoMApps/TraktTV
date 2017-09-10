@@ -31,7 +31,6 @@ class PresenterListMovieMainScreen(var viewActivity: ViewActivity) : Presenter {
     }
 
     override fun onDestroy() {
-
     }
 
 }

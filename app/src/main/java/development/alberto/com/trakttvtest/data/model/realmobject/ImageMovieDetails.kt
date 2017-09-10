@@ -1,5 +1,6 @@
 package development.alberto.com.trakttvtest.data.model.realmobject
 
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
@@ -15,4 +16,9 @@ open class ImageMovieDetails: RealmObject() {
     var posterPath: String? = null
     var overview: String? = null
     var releaseDate: String? = null
+    var voteAverage: Double? = null
+    var genres: RealmList<RealmGenre>? = null
+
+
 }
+

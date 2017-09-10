@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import development.alberto.com.trakttvtest.R
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
+import development.alberto.com.trakttvtest.data.model.realmobject.RealmGenre
 import development.alberto.com.trakttvtest.presentation.adapter.ListMovieDetailsAdapter
 import development.alberto.com.trakttvtest.presentation.presenter.initialmovies.PresenterListMovieMainScreen
 import development.alberto.com.trakttvtest.presentation.view.moviedetails.MainMovieDetails
@@ -72,12 +73,22 @@ class MainActivity : AppCompatActivity() , ViewActivity {
     }
 
     //receive the details of the actual position in the list when it is clicked
-    // and send them to PresenterMovieDetails for representation
-    fun receiveActualPositionListClickToDisplay(getActualImageDetails: ImageMovieDetails) {
+    // and send them to MovieDetails for representation
+    fun receiveActualPositionListClickToDisplay(actualImageDetails: ImageMovieDetails) {
         val intent = Intent(this@MainActivity, MainMovieDetails::class.java)
-        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_TITLE, getActualImageDetails.title)
-        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_OVERVIEW, getActualImageDetails.overview)
-        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_RELEASE_DATE, getActualImageDetails.releaseDate)
+//        toBundle(actualImageDetails)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_TITLE, actualImageDetails.title)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_OVERVIEW, actualImageDetails.overview)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_RELEASE_DATE, actualImageDetails.releaseDate)
+        intent.putExtra(MainMovieDetails.EXTRA_POSTER_PATH, actualImageDetails.posterPath)
+        intent.putExtra(MainMovieDetails.EXTRA_VOTE_AVERAGE, actualImageDetails.voteAverage.toString())
+        var genreNames:String = ""
+        //toString
+        for (genre:RealmGenre in actualImageDetails.genres!!){
+            genreNames += genre.name + "  "
+        }
+        intent.putExtra(MainMovieDetails.EXTRA_GENRES, genreNames)
+        //startActivityMainMovieDetails
         startActivity(intent)
     }
 }
