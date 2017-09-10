@@ -48,7 +48,7 @@ class DataTraktTmdbRepository(): CallDataTraktTmdbRepository {
 
             apiServiceTrakt.getTraktDataObservable()
                     .flatMapIterable{t->t}
-                    .flatMap { tmdb-> apiServiceTmdb.getTMDBDataObservable(tmdb.movie!!.ids!!.tmdb!!, Constants.TMDB_API_KEY) }
+                    .flatMap { trakt-> apiServiceTmdb.getTMDBDataObservable(trakt.movie!!.ids!!.tmdb!!, Constants.TMDB_API_KEY) }
                     .subscribeOn(Schedulers.io())
                     .observeOn( Schedulers.from(Executors.newCachedThreadPool()))
                     .unsubscribeOn(AndroidSchedulers.mainThread())

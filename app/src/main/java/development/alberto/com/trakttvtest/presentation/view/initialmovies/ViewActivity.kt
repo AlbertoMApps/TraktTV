@@ -1,4 +1,4 @@
-package development.alberto.com.trakttvtest.presentation.view
+package development.alberto.com.trakttvtest.presentation.view.initialmovies
 
 import android.content.Context
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
@@ -6,7 +6,7 @@ import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDeta
 /**
  * Created by alber on 09/09/2017.
  */
-interface View {
+interface ViewActivity {
     fun context(): Context
     fun showMovieListInView(imageMovieDetails:List<ImageMovieDetails>)
 }

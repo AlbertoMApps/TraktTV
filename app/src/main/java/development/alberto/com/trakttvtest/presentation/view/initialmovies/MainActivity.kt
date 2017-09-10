@@ -1,6 +1,7 @@
-package development.alberto.com.trakttvtest.presentation.view
+package development.alberto.com.trakttvtest.presentation.view.initialmovies
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -10,13 +11,15 @@ import android.view.MenuItem
 import development.alberto.com.trakttvtest.R
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
 import development.alberto.com.trakttvtest.presentation.adapter.ListMovieDetailsAdapter
-import development.alberto.com.trakttvtest.presentation.presenter.PresenterListMovieDetails
+import development.alberto.com.trakttvtest.presentation.presenter.initialmovies.PresenterListMovieMainScreen
+import development.alberto.com.trakttvtest.presentation.view.moviedetails.MainMovieDetails
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() , View {
 
-    lateinit var presenterListMovieDetails:PresenterListMovieDetails
+class MainActivity : AppCompatActivity() , ViewActivity {
+
+    lateinit var presenterListMovieMainScreen: PresenterListMovieMainScreen
     lateinit var listMovieDetailsAdapter: ListMovieDetailsAdapter
 
 
@@ -30,8 +33,10 @@ class MainActivity : AppCompatActivity() , View {
                     .setAction(R.string.fab_action, null).show()
         }
 
-        presenterListMovieDetails = PresenterListMovieDetails(this)
-        presenterListMovieDetails.onCreate()
+
+
+        presenterListMovieMainScreen = PresenterListMovieMainScreen(this)
+        presenterListMovieMainScreen.onCreate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,9 +58,9 @@ class MainActivity : AppCompatActivity() , View {
     override fun context(): Context {
         return this
     }
-
+    //initially show the list of images in the viewActivity
     override fun showMovieListInView(imageMovieDetails:List<ImageMovieDetails>) {
-        //update the view
+        //update the viewActivity
         updateRecyclerListMovieDetails(imageMovieDetails)
     }
 
@@ -64,5 +69,15 @@ class MainActivity : AppCompatActivity() , View {
         listMovieDetailsAdapter = ListMovieDetailsAdapter(this, R.layout.images_row, imageMovieDetails)
         imagesListView.setAdapter(listMovieDetailsAdapter)
         imagesListView.setLayoutManager( GridLayoutManager(this, 2) )
+    }
+
+    //receive the details of the actual position in the list when it is clicked
+    // and send them to PresenterMovieDetails for representation
+    fun receiveActualPositionListClickToDisplay(getActualImageDetails: ImageMovieDetails) {
+        val intent = Intent(this@MainActivity, MainMovieDetails::class.java)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_TITLE, getActualImageDetails.title)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_OVERVIEW, getActualImageDetails.overview)
+        intent.putExtra(MainMovieDetails.EXTRA_MOVIE_RELEASE_DATE, getActualImageDetails.releaseDate)
+        startActivity(intent)
     }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="development.alberto.com.trakttvtest.presentation.view.moviedetails.MainMovieDetails">
+
+    <TextView
+        android:id="@+id/tvMovieTitleDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="@dimen/top_imageView_margin"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/second_title_text_size"
+        android:layout_margin="@dimen/top_imageView_margin"
+        android:textStyle="bold"
+        android:text="@string/title_overview"/>
+    <TextView
+        android:id="@+id/tvMoviOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size"
+        android:layout_margin="@dimen/top_imageView_margin"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/second_title_text_size"
+        android:layout_margin="@dimen/top_imageView_margin"
+        android:textStyle="bold"
+        android:text="@string/title_release_date"/>
+    <TextView
+        android:id="@+id/tvMovieReleaseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/top_imageView_margin" />
+
+</LinearLayout>

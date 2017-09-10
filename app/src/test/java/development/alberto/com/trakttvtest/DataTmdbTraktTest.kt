@@ -52,7 +52,7 @@ class CloudStoreTest {
     fun testGetDataRepositoryMerged(){
         var mergedObservable: Observable<Tmdb> = restApiTrakt.getTraktDataObservable()
                 .flatMapIterable{t->t}
-                .flatMap { tmdb-> restApiTmdb.getTMDBDataObservable(tmdb.movie!!.ids!!.tmdb!!, Constants.TMDB_API_KEY) }
+                .flatMap { trakt-> restApiTmdb.getTMDBDataObservable(trakt.movie!!.ids!!.tmdb!!, Constants.TMDB_API_KEY) }
 
         mergedObservable.subscribeWith(tmdbObserver)
         mergedObservable.subscribe(Consumer { data -> assertNotNull(data) })
@@ -61,6 +61,4 @@ class CloudStoreTest {
         tmdbObserver.assertNoTimeout()
 
     }
-
-
 }

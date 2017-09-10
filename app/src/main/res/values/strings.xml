@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="fab_message">Hello to the app!</string>
     <string name="fab_action">Hello to the app!</string>
+    <string name="title_overview">Overview:</string>
+    <string name="title_release_date">Release date:</string>
 </resources>
