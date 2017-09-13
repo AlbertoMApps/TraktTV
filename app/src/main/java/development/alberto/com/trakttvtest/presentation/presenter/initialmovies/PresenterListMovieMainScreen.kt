@@ -1,5 +1,6 @@
 package development.alberto.com.trakttvtest.presentation.presenter.initialmovies
 
+import development.alberto.com.trakttvtest.data.datarepository.DataTraktTmdbRepository
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
 import development.alberto.com.trakttvtest.domain.interactor.Interactor
 import development.alberto.com.trakttvtest.presentation.presenter.Presenter
@@ -17,7 +18,7 @@ class PresenterListMovieMainScreen(var viewActivity: ViewActivity) : Presenter {
 
     override fun onCreate() {
         //Call to check the service...
-        interactorTraktListImages = Interactor()
+        interactorTraktListImages = Interactor(DataTraktTmdbRepository())
         listImageMoviesDetailsCached = interactorTraktListImages.getObservableListImageMoviesDetailsCached()
         viewActivity.showMovieListInView(listImageMoviesDetailsCached!!)
     }

@@ -6,12 +6,10 @@ import development.alberto.com.trakttvtest.data.cache.CacheRealm
 import development.alberto.com.trakttvtest.data.constants.Constants
 import development.alberto.com.trakttvtest.data.model.mapper.TmdbMapperToRealmImageMovieDetails
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
-import development.alberto.com.trakttvtest.data.model.tmdb.Tmdb
 import development.alberto.com.trakttvtest.data.service.RetrofitService
 import development.alberto.com.trakttvtest.domain.domainrepository.CallDataTraktTmdbRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
 
@@ -28,11 +26,11 @@ class DataTraktTmdbRepository(): CallDataTraktTmdbRepository {
 
 //Mix of Apis in order to make one main one to pass to caching and rest of the app....
     override fun getDataRepositoryMerged() {
-    //we call the retrofit in each api trakt and tmdb...
-    retrofitService.restService(Constants.TRAKT_URL_BASE)
-    apiServiceTrakt = retrofitService.restCreateApiServiceTrakt()
-    retrofitService.restService(Constants.URL_BASE_TMDB)
-    apiServiceTmdb = retrofitService.restCreateApiServiceTmdb()
+        //we call the retrofit in each api trakt and tmdb...
+        retrofitService.restService(Constants.TRAKT_URL_BASE)
+        apiServiceTrakt = retrofitService.restCreateApiServiceTrakt()
+        retrofitService.restService(Constants.URL_BASE_TMDB)
+        apiServiceTmdb = retrofitService.restCreateApiServiceTmdb()
 
             apiServiceTrakt.getTraktDataObservable()
                     .flatMapIterable{t->t}

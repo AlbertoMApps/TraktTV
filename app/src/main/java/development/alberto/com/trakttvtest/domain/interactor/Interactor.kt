@@ -8,9 +8,7 @@ import development.alberto.com.trakttvtest.domain.domainrepository.CallDataTrakt
  * Created by alber on 09/09/2017.
  */
 
-class Interactor {
-
-    var call:CallDataTraktTmdbRepository = DataTraktTmdbRepository()
+class Interactor( var call:CallDataTraktTmdbRepository ) {
 
     //here we will make th call to the API to mix them and cahe the result of it
     fun getObservableListImageMoviesDetailsCached(): List<ImageMovieDetails>? {
