@@ -22,8 +22,8 @@ import java.util.concurrent.Executors
 class DataTraktTmdbRepository(): CallDataTraktTmdbRepository {
 
     var retrofitService:RetrofitService = RetrofitService()
-    var apiServiceTrakt: TraktApi = retrofitService.restApiServiceTrakt()
-    var apiServiceTmdb: TmdbApi = retrofitService.restApiServiceTmdb()
+    lateinit var apiServiceTrakt: TraktApi
+    lateinit var apiServiceTmdb: TmdbApi
 
 //Mix of Apis in order to make one main one to pass to caching and rest of the app....
     override fun getDataRepositoryMerged() {
@@ -45,6 +45,11 @@ class DataTraktTmdbRepository(): CallDataTraktTmdbRepository {
                 println(e.message)
             }
         }
+    //we call the retrofit in each api trakt and tmdb...
+    retrofitService.restService(Constants.TRAKT_URL_BASE)
+    apiServiceTrakt = retrofitService.restCreateApiServiceTrakt()
+    retrofitService.restService(Constants.URL_BASE_TMDB)
+    apiServiceTmdb = retrofitService.restCreateApiServiceTmdb()
 
             apiServiceTrakt.getTraktDataObservable()
                     .flatMapIterable{t->t}

@@ -18,7 +18,7 @@ import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class CloudStoreTest {
+class DataTmdbTraktTest {
 
     @Mock
     lateinit var restApiTrakt:TraktApi
@@ -30,8 +30,10 @@ class CloudStoreTest {
 
     @Before
     fun setup(){
-        restApiTrakt = retrofitService.restApiServiceTrakt()
-        restApiTmdb = retrofitService.restApiServiceTmdb()
+        retrofitService.restService(Constants.TRAKT_URL_BASE)
+        restApiTrakt = retrofitService.restCreateApiServiceTrakt()
+        retrofitService.restService(Constants.URL_BASE_TMDB)
+        restApiTmdb = retrofitService.restCreateApiServiceTmdb()
     }
 
     @Test

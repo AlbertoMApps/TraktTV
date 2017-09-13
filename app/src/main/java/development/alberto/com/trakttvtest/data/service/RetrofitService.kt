@@ -14,24 +14,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitService {
 
-    fun restApiServiceTrakt(): TraktApi {
-        var retrofit: Retrofit? = Retrofit.Builder()
-                .baseUrl(Constants.TRAKT_URL_BASE)
+    var retrofit: Retrofit? = null
+
+    fun restService(urlBase:String) {
+        retrofit = Retrofit.Builder()
+                .baseUrl(urlBase)
                 .client(OkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+    }
+
+    fun restCreateApiServiceTrakt() : TraktApi {
         return retrofit!!.create(TraktApi::class.java)
 
     }
-
-    fun restApiServiceTmdb(): TmdbApi {
-        var retrofit: Retrofit? = Retrofit.Builder()
-                .baseUrl(Constants.URL_BASE_TMDB)
-                .client(OkHttpClient())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+    fun restCreateApiServiceTmdb() : TmdbApi {
         return retrofit!!.create(TmdbApi::class.java)
 
     }
