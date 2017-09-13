@@ -33,9 +33,11 @@ class MainActivity : AppCompatActivity() , ViewActivity {
             Snackbar.make(view, R.string.fab_message, Snackbar.LENGTH_LONG)
                     .setAction(R.string.fab_action, null).show()
         }
-
-
-
+        //set the adapter for lis of movies
+        listMovieDetailsAdapter = ListMovieDetailsAdapter(this, R.layout.images_row)
+        imagesListView.setAdapter(listMovieDetailsAdapter)
+        imagesListView.setLayoutManager( GridLayoutManager(this, 2) )
+        //presenter
         presenterListMovieMainScreen = PresenterListMovieMainScreen(this)
         presenterListMovieMainScreen.onCreate()
     }
@@ -67,9 +69,8 @@ class MainActivity : AppCompatActivity() , ViewActivity {
 
 
     private fun updateRecyclerListMovieDetails (imageMovieDetails:List<ImageMovieDetails>) {
-        listMovieDetailsAdapter = ListMovieDetailsAdapter(this, R.layout.images_row, imageMovieDetails)
-        imagesListView.setAdapter(listMovieDetailsAdapter)
-        imagesListView.setLayoutManager( GridLayoutManager(this, 2) )
+        listMovieDetailsAdapter.listMovieDetail = imageMovieDetails
+        listMovieDetailsAdapter.notifyDataSetChanged()
     }
 
     //receive the details of the actual position in the list when it is clicked

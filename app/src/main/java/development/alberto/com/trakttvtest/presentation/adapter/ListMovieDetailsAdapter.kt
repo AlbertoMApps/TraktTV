@@ -6,21 +6,21 @@ import android.support.annotation.RequiresApi
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import development.alberto.com.trakttvtest.data.model.realmobject.ImageMovieDetails
 import development.alberto.com.trakttvtest.presentation.view.initialmovies.MainActivity
 import kotlinx.android.synthetic.main.images_row.view.*
-import android.view.ViewAnimationUtils
-
 
 
 /**
  * Created by alber on 09/09/2017.
  */
 
-class ListMovieDetailsAdapter(var context: MainActivity,var mLayout: Int, var listMovieDetail: List<ImageMovieDetails>) : RecyclerView.Adapter<ListMovieDetailsAdapter.ViewHolder>() {
+class ListMovieDetailsAdapter(var context: MainActivity,var mLayout: Int) : RecyclerView.Adapter<ListMovieDetailsAdapter.ViewHolder>() {
 
+    var listMovieDetail: List<ImageMovieDetails> = ArrayList()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
